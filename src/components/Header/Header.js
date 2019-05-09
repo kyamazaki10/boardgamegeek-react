@@ -2,9 +2,9 @@ import React from 'react';
 import './Header.css';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import MenuIcon from '@material-ui/icons/Menu';
 
 class Header extends React.Component {
   render() {
@@ -15,7 +15,7 @@ class Header extends React.Component {
             <IconButton aria-label="Menu">
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit">
+            <Typography variant="h6" className="title">
               Title
             </Typography>
           </Toolbar>
