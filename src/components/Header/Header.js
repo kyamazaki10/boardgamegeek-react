@@ -10,7 +10,7 @@ class Header extends React.Component {
   render() {
     return (
       <div className="header">
-        <AppBar>
+        <AppBar position="static">
           <Toolbar>
             <IconButton aria-label="Menu">
               <MenuIcon />
