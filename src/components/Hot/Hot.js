@@ -21,7 +21,7 @@ class Hot extends React.Component {
   }
 
   fetchHotGames() {
-    let url = 'https://www.boardgamegeek.com/xmlapi2/hot';
+    const url = 'https://www.boardgamegeek.com/xmlapi2/hot';
     let json = {};
 
     fetch(url)
@@ -39,25 +39,35 @@ class Hot extends React.Component {
       .catch(error => console.log(error));
   }
 
-  render() {
+  renderHotGames() {
     if (this.state.isLoaded) {
       let games = this.state.hot;
 
       return (
-        <div className="hot">
-          <Typography variant="h4" className="headline">What's Hot?</Typography>
-          <GridList cellHeight={180} cols={10} spacing={5}>
+        <React.Fragment>
+          <Typography variant="h4" className="headline">
+            What’s Hot?
+          </Typography>
+          <GridList cellHeight={180} cols={5} spacing={5}>
             {games.map((game, i) => (
               <GridListTile key={i}>
                 <img src={game.thumbnail[0].$.value} alt={game.name[0].$.value} />
               </GridListTile>
             ))};
           </GridList>
-        </div>
+        </React.Fragment>
       );
     } else {
       return <Progress />;
     }
+  }
+
+  render() {
+    return (
+      <div className="hot">
+        {this.renderHotGames()}
+      </div>
+    );
   }
 }
 

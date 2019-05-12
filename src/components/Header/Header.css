@@ -1,3 +1,4 @@
-.header .title {
-  margin-left: 0.5em;
+.header-content {
+  width: 80%;
+  margin: 0 auto;
 }

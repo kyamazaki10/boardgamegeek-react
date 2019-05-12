@@ -11,11 +11,11 @@ class Header extends React.Component {
     return (
       <div className="header">
         <AppBar position="static">
-          <Toolbar>
+          <Toolbar className="header-content">
             <IconButton aria-label="Menu">
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" className="title">
+            <Typography variant="h6">
               Title
             </Typography>
           </Toolbar>
