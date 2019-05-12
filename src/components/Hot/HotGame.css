@@ -1,3 +1,7 @@
+.hot .tile:hover {
+  cursor: pointer;
+}
+
 .hot .tilebar {
   height: 2.5em;
   background: rgba(0, 0, 0, 0.7);
