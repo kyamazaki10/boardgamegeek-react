@@ -1,8 +1,8 @@
 import React from 'react';
+import HotGame from './HotGame.js';
 import Progress from '../Progress/Progress.js';
 import './Hot.css';
 import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
 import Typography from '@material-ui/core/Typography';
 import * as xml2js from 'xml2js';
 
@@ -48,11 +48,9 @@ class Hot extends React.Component {
           <Typography variant="h4" className="headline">
             What’s Hot?
           </Typography>
-          <GridList cellHeight={180} cols={5} spacing={5}>
+          <GridList cellHeight={180} cols={5} spacing={8}>
             {games.map((game, i) => (
-              <GridListTile key={i}>
-                <img src={game.thumbnail[0].$.value} alt={game.name[0].$.value} />
-              </GridListTile>
+              <HotGame key={i} game={game} />
             ))};
           </GridList>
         </React.Fragment>

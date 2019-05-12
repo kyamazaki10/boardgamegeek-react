@@ -1,0 +1,10 @@
+.hot .tilebar {
+  height: 2.5em;
+  background: rgba(0, 0, 0, 0.7);
+  text-align: left;
+}
+
+.hot .info {
+  font-size: 0.8em;
+  color: #FFF;
+}
