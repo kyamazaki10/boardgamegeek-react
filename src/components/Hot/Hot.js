@@ -1,10 +1,10 @@
 import React from 'react';
 import HotGame from './HotGame.js';
 import Progress from '../Progress/Progress.js';
+import { parseXML } from '../../utils/utils.js';
 import './Hot.css';
 import GridList from '@material-ui/core/GridList';
 import Typography from '@material-ui/core/Typography';
-import * as xml2js from 'xml2js';
 
 class Hot extends React.Component {
   constructor(props) {
@@ -12,6 +12,7 @@ class Hot extends React.Component {
 
     this.state = {
       hot: [],
+      hasError: false,
       isLoaded: false
     };
   }
@@ -22,30 +23,27 @@ class Hot extends React.Component {
 
   fetchHotGames() {
     const url = 'https://www.boardgamegeek.com/xmlapi2/hot';
-    let json = {};
 
     fetch(url)
       .then(response => response.text())
       .then((xmlResponse) => {
-        xml2js.parseString(xmlResponse, function (error, result) {
-          json = result;
-        });
+        const json = parseXML(xmlResponse);
 
         this.setState({
           hot: json.items.item,
           isLoaded: true
         });
       })
-      .catch(error => console.log(error));
+      .catch(error => this.setState({ hasError: true }));
   }
 
   renderHotGames() {
     if (this.state.isLoaded) {
-      let games = this.state.hot;
+      const games = this.state.hot;
 
       return (
         <React.Fragment>
-          <Typography variant="h4" className="headline">
+          <Typography variant="h4" component="h2">
             What’s Hot?
           </Typography>
           <GridList cellHeight={180} cols={5} spacing={8}>
@@ -56,7 +54,7 @@ class Hot extends React.Component {
         </React.Fragment>
       );
     } else {
-      return <Progress />;
+      return <Progress hasError={this.state.hasError} />;
     }
   }
 

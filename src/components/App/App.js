@@ -12,10 +12,12 @@ function App() {
     <MuiThemeProvider theme={theme}>
       <Header />
 
-      <Router>
-        <Route path="/" exact component={Hot} />
-        <Route path="/games/:id" component={Games} />
-      </Router>
+      <div className="content">
+        <Router>
+          <Route path="/" exact component={Hot} />
+          <Route path="/games/:id" component={Games} />
+        </Router>
+      </div>
     </MuiThemeProvider>
   );
 }
