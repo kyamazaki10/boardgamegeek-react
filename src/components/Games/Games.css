@@ -5,6 +5,14 @@
 .game-content img {
   width: 300px;
   height: 300px;
-  padding: 0 1.5em 1.5em 0;
+  padding: 0 1.5em 1em 0;
   float: left;
+}
+
+.game-content .description {
+  margin-top: 1em;
+}
+
+.gameplay-details {
+  margin-top: 1em;
 }

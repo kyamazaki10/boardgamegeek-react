@@ -2,6 +2,7 @@ import React from 'react';
 import Progress from '../Progress/Progress.js';
 import { parseXML, decodeHTML } from '../../utils/utils.js';
 import './Games.css';
+import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography';
 
 class Games extends React.Component {
@@ -41,21 +42,31 @@ class Games extends React.Component {
       const title = game.name[0].$.value;
 
       return (
-        <div className="game-content">
+        <Paper className="paper game-content">
           <img src={game.image[0]} alt={title} />
 
-          <Typography variant="h3" component="h1">
+          <Typography variant="h4" component="h1">
             {title}
           </Typography>
 
-          {decodeHTML(game.description)}
+          <Typography variant="subtitle2">
+            ({game.yearpublished[0].$.value})
+          </Typography>
 
-          {game.minplayers[0].$.value}
-          {game.maxplayers[0].$.value}
-          {game.minplaytime[0].$.value}
-          {game.maxplaytime[0].$.value}
-          {game.yearpublished[0].$.value}
-        </div>
+          <div class="gameplay-details">
+            <Typography variant="caption">
+              Players: {game.minplayers[0].$.value}-{game.maxplayers[0].$.value}
+            </Typography>
+
+            <Typography variant="caption">
+              Playing Time: {game.minplaytime[0].$.value}-{game.maxplaytime[0].$.value} minutes
+            </Typography>
+          </div>
+
+          <Typography variant="body1" className="description">
+            {decodeHTML(game.description)}
+          </Typography>
+        </Paper>
       );
     } else {
       return <Progress hasError={this.state.hasError} />;
