@@ -16,3 +16,7 @@ export const decodeHTML = (html) => {
 
   return text.value;
 };
+
+export const truncateText = (html) => {
+  return html.split(' ').slice(0, 130).join(' ') + '... ';
+};

@@ -1,6 +1,7 @@
 import React from 'react';
+import GameDescription from './GameDescription.js';
 import Progress from '../Progress/Progress.js';
-import { parseXML, decodeHTML } from '../../utils/utils.js';
+import { parseXML } from '../../utils/utils.js';
 import './Games.css';
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography';
@@ -53,7 +54,7 @@ class Games extends React.Component {
             ({game.yearpublished[0].$.value})
           </Typography>
 
-          <div class="gameplay-details">
+          <div className="gameplay-details">
             <Typography variant="caption">
               Players: {game.minplayers[0].$.value}-{game.maxplayers[0].$.value}
             </Typography>
@@ -63,9 +64,7 @@ class Games extends React.Component {
             </Typography>
           </div>
 
-          <Typography variant="body1" className="description">
-            {decodeHTML(game.description)}
-          </Typography>
+          <GameDescription description={game.description} />
         </Paper>
       );
     } else {
