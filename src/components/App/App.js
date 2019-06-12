@@ -1,5 +1,5 @@
 import React from 'react';
-import Games from '../Games/Games.js';
+import Game from '../Game/Game.js';
 import Header from '../Header/Header.js';
 import Hot from '../Hot/Hot.js';
 import theme from '../../utils/theme.js';
@@ -15,7 +15,7 @@ function App() {
       <div className="content">
         <Router>
           <Route path="/" exact component={Hot} />
-          <Route path="/games/:id" component={Games} />
+          <Route path="/games/:id" component={Game} />
         </Router>
       </div>
     </MuiThemeProvider>

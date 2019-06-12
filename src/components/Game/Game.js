@@ -2,11 +2,11 @@ import React from 'react';
 import GameDescription from './GameDescription.js';
 import Progress from '../Progress/Progress.js';
 import { parseXML } from '../../utils/utils.js';
-import './Games.css';
+import './Game.css';
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography';
 
-class Games extends React.Component {
+class Game extends React.Component {
   constructor(props) {
     super(props);
 
@@ -85,4 +85,4 @@ class Games extends React.Component {
   }
 }
 
-export default Games;
+export default Game;
