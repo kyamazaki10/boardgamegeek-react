@@ -2,3 +2,36 @@
   width: 80%;
   margin: 0 auto;
 }
+
+.title {
+  flex-grow: 1;
+}
+
+.search {
+  position: relative;
+  background-color: #C5E1A5;
+}
+
+.search-icon {
+  width: 3em;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-input {
+  padding: 0.5em 0.5em 0.5em 3em;
+}
+
+.search-input input {
+  width: 200px;
+}
+
+.search-input input:focus {
+  width: 300px;
+  transition: width 0.5s;
+  -webkit-transition: width 0.5s;
+  -moz-transition: width 0.5s;
+}

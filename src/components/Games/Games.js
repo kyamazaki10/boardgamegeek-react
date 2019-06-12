@@ -55,13 +55,17 @@ class Games extends React.Component {
           </Typography>
 
           <div className="gameplay-details">
-            <Typography variant="caption">
-              Players: {game.minplayers[0].$.value}-{game.maxplayers[0].$.value}
-            </Typography>
+            <div>
+              <Typography variant="caption">
+                Players: {game.minplayers[0].$.value}-{game.maxplayers[0].$.value}
+              </Typography>
+            </div>
 
-            <Typography variant="caption">
-              Playing Time: {game.minplaytime[0].$.value}-{game.maxplaytime[0].$.value} minutes
-            </Typography>
+            <div>
+              <Typography variant="caption">
+                Playing Time: {game.minplaytime[0].$.value}-{game.maxplaytime[0].$.value} minutes
+              </Typography>
+            </div>
           </div>
 
           <GameDescription description={game.description} />
