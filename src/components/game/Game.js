@@ -1,10 +1,10 @@
 import React from 'react';
-import GameDescription from './GameDescription.js';
-import Progress from '../Progress/Progress.js';
-import { parseXML } from '../../utils/utils.js';
-import './Game.css';
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography';
+import GameDescription from './GameDescription.js';
+import Progress from '../shared/progress/Progress.js';
+import { parseXML } from '../../utils/utils.js';
+import './Game.css';
 
 class Game extends React.Component {
   constructor(props) {

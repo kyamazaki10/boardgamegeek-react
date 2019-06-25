@@ -1,8 +1,8 @@
 import React from 'react';
-import { decodeHTML, truncateText } from '../../utils/utils.js';
-import './GameDescription.css';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
+import { decodeHTML, truncateText } from '../../utils/utils.js';
+import './GameDescription.css';
 
 class GameDescription extends React.Component {
   constructor(props) {

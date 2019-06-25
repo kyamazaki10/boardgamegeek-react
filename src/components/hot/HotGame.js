@@ -1,9 +1,9 @@
 import React from 'react';
-import './HotGame.css';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
+import './HotGame.css';
 
 class HotGame extends React.Component {
   constructor(props) {
@@ -21,9 +21,16 @@ class HotGame extends React.Component {
     let title = game.name[0].$.value;
 
     return (
-      <GridListTile key={key} style={{...this.props.style}} className="tile" onClick={this.goToGame}>
+      <GridListTile
+        key={key}
+        style={{...this.props.style}}
+        onClick={this.goToGame}
+        className="tile"
+      >
         <img src={game.thumbnail[0].$.value} alt={title} />
-        <GridListTileBar title={title} className="tilebar"
+        <GridListTileBar
+          title={title}
+          className="tilebar"
           actionIcon={
             <IconButton aria-label="Info">
               <InfoIcon className="info" />

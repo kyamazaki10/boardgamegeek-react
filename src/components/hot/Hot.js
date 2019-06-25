@@ -1,10 +1,10 @@
 import React from 'react';
-import HotGame from './HotGame.js';
-import Progress from '../Progress/Progress.js';
-import { parseXML } from '../../utils/utils.js';
-import './Hot.css';
 import GridList from '@material-ui/core/GridList';
 import Typography from '@material-ui/core/Typography';
+import HotGame from './HotGame.js';
+import Progress from '../shared/progress/Progress.js';
+import { parseXML } from '../../utils/utils.js';
+import './Hot.css';
 
 class Hot extends React.Component {
   constructor(props) {

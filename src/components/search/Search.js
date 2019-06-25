@@ -1,7 +1,7 @@
 import React from 'react';
-import { parseXML } from '../../utils/utils.js';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
+import { parseXML } from '../../utils/utils.js';
 import './Search.css';
 
 class Search extends React.Component {
