@@ -23,7 +23,7 @@ class GameDescription extends React.Component {
 
   renderShowMoreButton() {
     if (!this.state.isExpanded) {
-      return(
+      return (
         <Link component="button" color="secondary" onClick={this.showMore}>More ▼</Link>
       );
     }
@@ -40,7 +40,7 @@ class GameDescription extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <Typography variant="body1" className="description">
         {this.renderDescription()}
         {this.renderShowMoreButton()}

@@ -77,7 +77,7 @@ class Game extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <div className="game">
         {this.renderGame()}
       </div>

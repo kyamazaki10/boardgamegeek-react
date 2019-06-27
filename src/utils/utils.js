@@ -20,3 +20,7 @@ export const decodeHTML = (html) => {
 export const truncateText = (html) => {
   return html.split(' ').slice(0, 130).join(' ') + '... ';
 };
+
+export const redirectUrl = (path, id) => {
+  window.location = `/${path}/${id}`;
+}
