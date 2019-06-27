@@ -17,7 +17,7 @@ class Header extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" className="title">
-              Title
+              <a href="/">Title</a>
             </Typography>
             <Search />
           </Toolbar>

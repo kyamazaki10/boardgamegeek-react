@@ -3,6 +3,16 @@
   margin: 0 auto;
 }
 
+.header-content a {
+  color: #000;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.header-content a:hover {
+  color: #333;
+}
+
 .title {
   flex-grow: 1;
 }
