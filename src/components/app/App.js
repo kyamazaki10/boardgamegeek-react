@@ -3,7 +3,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Game from '../game/Game.js';
 import Header from '../header/Header.js';
-import Hot from '../hot/Hot.js';
+import Home from '../home/Home.js';
 import SearchResults from '../search/SearchResults.js';
 import theme from '../../utils/theme.js';
 import './App.css';
@@ -15,7 +15,7 @@ function App() {
 
       <div className="content">
         <Router>
-          <Route path="/" exact component={Hot} />
+          <Route path="/" exact component={Home} />
           <Route path="/games/:id" component={Game} />
           <Route path="/search/:query" component={SearchResults} />
         </Router>

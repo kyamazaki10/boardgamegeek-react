@@ -1,5 +1,6 @@
 import React from 'react';
 import GridList from '@material-ui/core/GridList';
+import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import HotGame from './HotGame.js';
 import Progress from '../shared/progress/Progress.js';
@@ -42,16 +43,17 @@ class Hot extends React.Component {
       const games = this.state.hot;
 
       return (
-        <React.Fragment>
+        <Paper className="paper paper-hot">
           <Typography variant="h4" component="h2">
             What’s Hot?
           </Typography>
-          <GridList cellHeight={180} cols={5} spacing={8}>
+
+          <GridList cellHeight={180} cols={6} spacing={15}>
             {games.map((game, i) => (
               <HotGame key={i} game={game} />
             ))};
           </GridList>
-        </React.Fragment>
+        </Paper>
       );
     } else {
       return <Progress hasError={this.state.hasError} />;
