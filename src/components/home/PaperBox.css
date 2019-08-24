@@ -1,3 +1,15 @@
+.paper-box {
+  height: 200px;
+}
+
 .paper-box h3 {
-  text-align: center
+  text-align: center;
+}
+
+.paper-box .description {
+  padding: 1.5em 3em 1em;
+}
+
+.paper-box .search {
+  background-color: #EFEFEF;
 }

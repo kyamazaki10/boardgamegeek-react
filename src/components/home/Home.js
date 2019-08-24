@@ -11,9 +11,24 @@ class Home extends React.Component {
         <Hot />
 
         <Grid container spacing={3}>
-          <PaperBox header="Find a Game" />
-          <PaperBox header="Find a User" />
-          <PaperBox header="About" />
+          <PaperBox
+            header="Find a Game"
+            description="Looking for a game? Enter the title below."
+            search={true}
+          />
+
+          <PaperBox
+            header="Find a User"
+            description="View stats for a specific BoardGameGeek user."
+            search={true}
+          />
+
+          <PaperBox
+            header="About"
+            description="Learn more about..."
+            buttonText="Learn More"
+            buttonUrl="about"
+          />
         </Grid>
       </div>
     );
