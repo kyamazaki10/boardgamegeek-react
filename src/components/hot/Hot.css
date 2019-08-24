@@ -3,3 +3,7 @@
   margin-bottom: 1em;
   overflow: scroll;
 }
+
+.paper-hot h2 {
+  margin-bottom: 0.5em;
+}

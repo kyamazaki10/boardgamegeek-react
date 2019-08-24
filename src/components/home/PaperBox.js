@@ -10,7 +10,7 @@ class PaperBox extends React.Component {
   renderSearch() {
     if (this.props.search) {
       return (
-        <Search />
+        <Search type={this.props.type} />
       );
     }
   }

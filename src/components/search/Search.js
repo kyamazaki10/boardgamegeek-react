@@ -15,7 +15,7 @@ class Search extends React.Component {
     const input = e.target.value;
 
     if (input && e.key === 'Enter') {
-      redirectUrl('search', input);
+      redirectUrl(this.props.type, input);
     }
   }
 

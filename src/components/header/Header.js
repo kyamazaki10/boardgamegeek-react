@@ -16,10 +16,12 @@ class Header extends React.Component {
             <IconButton aria-label="Menu">
               <MenuIcon />
             </IconButton>
+
             <Typography variant="h6" className="title">
               <a href="/">Title</a>
             </Typography>
-            <Search />
+
+            <Search type="search" />
           </Toolbar>
         </AppBar>
       </div>

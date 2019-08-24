@@ -15,12 +15,14 @@ class Home extends React.Component {
             header="Find a Game"
             description="Looking for a game? Enter the title below."
             search={true}
+            type="search"
           />
 
           <PaperBox
             header="Find a User"
             description="View stats for a specific BoardGameGeek user."
             search={true}
+            type="user"
           />
 
           <PaperBox
