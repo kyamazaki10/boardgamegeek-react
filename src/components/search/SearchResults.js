@@ -5,6 +5,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Typography from '@material-ui/core/Typography';
 import Progress from '../shared/progress/Progress.js';
 import { parseXML } from '../../utils/utils.js';
 import './SearchResults.css';
@@ -42,14 +43,20 @@ class SearchResults extends React.Component {
       .catch(error => this.setState({ hasError: true }));
   }
 
-  renderSearchResultsRow() {
-    const results = this.state.results;
+  renderNoResults() {
+    return (
+      <Typography variant="body1">
+        No results found.
+      </Typography>
+    );
+  }
 
+  renderSearchResultsRow(results) {
     return results.map((result, i) => {
       let name = result.name && result.name[0].$.value;
       let year = result.yearpublished && result.yearpublished[0].$.value;
 
-      return(
+      return (
         <TableRow key={i}>
           <TableCell>
             <Link to={`/games/${result.$.id}`}>{name}</Link>
@@ -62,19 +69,25 @@ class SearchResults extends React.Component {
 
   renderSearchResultsTable() {
     if (this.state.isLoaded) {
-      return (
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Game</TableCell>
-              <TableCell>Year</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.renderSearchResultsRow()}
-          </TableBody>
-        </Table>
-      );
+      const results = this.state.results;
+
+      if (results) {
+        return (
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Game</TableCell>
+                <TableCell>Year</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {this.renderSearchResultsRow(results)}
+            </TableBody>
+          </Table>
+        );
+      } else {
+        return this.renderNoResults();
+      }
     } else {
       return <Progress hasError={this.state.hasError} />;
     }
