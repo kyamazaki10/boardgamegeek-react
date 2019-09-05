@@ -22,7 +22,7 @@ class Home extends React.Component {
             header="Find a User"
             description="View stats for a specific BoardGameGeek user."
             search={true}
-            type="user"
+            type="users"
           />
 
           <PaperBox
