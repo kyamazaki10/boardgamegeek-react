@@ -18,7 +18,7 @@ class Header extends React.Component {
             </IconButton>
 
             <Typography variant="h6" className="title">
-              <a href="/">Title</a>
+              <a href="/">Colorado Gaming</a>
             </Typography>
 
             <Search type="search" />
