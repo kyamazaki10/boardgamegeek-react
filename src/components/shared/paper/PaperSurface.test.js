@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PaperBox from './PaperBox.js';
+import PaperSurface from './PaperSurface.js';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<PaperBox />, div);
+  ReactDOM.render(<PaperSurface />, div);
 });

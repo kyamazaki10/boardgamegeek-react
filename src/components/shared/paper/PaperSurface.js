@@ -3,10 +3,10 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Search from '../search/Search.js';
-import './PaperBox.css';
+import Search from '../../search/Search.js';
+import './PaperSurface.css';
 
-class PaperBox extends React.Component {
+class PaperSurface extends React.Component {
   renderSearch() {
     if (this.props.search) {
       return (
@@ -27,8 +27,8 @@ class PaperBox extends React.Component {
 
   render() {
     return(
-      <Grid item xs={4}>
-        <Paper className="paper paper-box">
+      <Grid item xs={this.props.size}>
+        <Paper className="paper paper-surface">
           <Typography variant="h4" component="h3">
             {this.props.header}
           </Typography>
@@ -45,4 +45,4 @@ class PaperBox extends React.Component {
   }
 }
 
-export default PaperBox;
+export default PaperSurface;

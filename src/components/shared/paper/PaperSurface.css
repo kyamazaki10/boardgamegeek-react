@@ -1,15 +1,15 @@
-.paper-box {
+.paper-surface {
   height: 200px;
 }
 
-.paper-box h3 {
+.paper-surface h3 {
   text-align: center;
 }
 
-.paper-box .description {
+.paper-surface .description {
   padding: 1.5em 3em 1em;
 }
 
-.paper-box .search {
+.paper-surface .search {
   background-color: #EFEFEF;
 }

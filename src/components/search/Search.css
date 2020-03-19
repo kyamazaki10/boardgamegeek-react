@@ -1,5 +1,8 @@
 .search {
+  width: 80%;
   position: relative;
+  display: inline-block;
+  text-align: left;
   background-color: #C5E1A5;
 }
 
@@ -13,15 +16,11 @@
 }
 
 .search-input {
+  width: 100%;
   padding: 0.5em 0.5em 0.5em 3em;
 }
 
-.search-input input {
-  width: 200px;
-}
-
 .search-input input:focus {
-  width: 300px;
   transition: width 0.5s;
   -webkit-transition: width 0.5s;
   -moz-transition: width 0.5s;
