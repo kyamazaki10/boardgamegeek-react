@@ -21,7 +21,7 @@ export const filterAndJoinArray = (array, separatorString) => {
   let separator = separatorString ? separatorString : ' ';
 
   return array.filter(element => element).join(separator);
-}
+};
 
 export const truncateText = (html) => {
   return html.split(' ').slice(0, 130).join(' ') + '... ';
