@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import HotGame from './HotGame.js';
 import Progress from '../shared/progress/Progress.js';
-import { parseXML } from '../../utils/utils.js';
+import { xmlApiFetch } from '../../utils/api.js';
 import './Hot.css';
 
 class Hot extends React.Component {
@@ -13,7 +13,7 @@ class Hot extends React.Component {
 
     this.state = {
       hot: [],
-      hasError: false,
+      error: null,
       isLoaded: false
     };
   }
@@ -25,17 +25,18 @@ class Hot extends React.Component {
   fetchHotGames() {
     const url = 'https://www.boardgamegeek.com/xmlapi2/hot';
 
-    fetch(url)
-      .then(response => response.text())
-      .then((xmlResponse) => {
-        const json = parseXML(xmlResponse);
-
-        this.setState({
-          hot: json.items.item,
-          isLoaded: true
-        });
-      })
-      .catch(error => this.setState({ hasError: true }));
+    xmlApiFetch(url)
+      .then(
+        (json) => {
+          this.setState({
+            hot: json.items.item,
+            isLoaded: true
+          });
+        },
+        (error) => {
+          this.setState({ error: error });
+        }
+      )
   }
 
   renderHotGames() {
@@ -56,7 +57,7 @@ class Hot extends React.Component {
         </Paper>
       );
     } else {
-      return <Progress hasError={this.state.hasError} />;
+      return <Progress error={this.state.error} />;
     }
   }
 

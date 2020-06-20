@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography';
 import GameDescription from './GameDescription.js';
 import Progress from '../shared/progress/Progress.js';
-import { parseXML } from '../../utils/utils.js';
+import { xmlApiFetch } from '../../utils/api.js';
 import './Game.css';
 
 class Game extends React.Component {
@@ -12,7 +12,7 @@ class Game extends React.Component {
 
     this.state = {
       game: {},
-      hasError: false,
+      error: null,
       isLoaded: false
     };
   }
@@ -24,17 +24,18 @@ class Game extends React.Component {
   fetchGame() {
     const url = `https://www.boardgamegeek.com/xmlapi2/thing?id=${this.props.match.params.id}`;
 
-    fetch(url)
-      .then(response => response.text())
-      .then((xmlResponse) => {
-        const json = parseXML(xmlResponse);
-
-        this.setState({
-          game: json.items.item[0],
-          isLoaded: true
-        });
-      })
-      .catch(error => this.setState({ hasError: true }));
+    xmlApiFetch(url)
+      .then(
+        (json) => {
+          this.setState({
+            game: json.items.item[0],
+            isLoaded: true
+          });
+        },
+        (error) => {
+          this.setState({ error: error });
+        }
+      )
   }
 
   renderGame() {
@@ -72,7 +73,7 @@ class Game extends React.Component {
         </Paper>
       );
     } else {
-      return <Progress hasError={this.state.hasError} />;
+      return <Progress error={this.state.error} />;
     }
   }
 

@@ -33,7 +33,7 @@ class PaperSurface extends React.Component {
             {this.props.header}
           </Typography>
 
-          <Typography variant="body1" gutterBottom={true}>
+          <Typography variant="body1" gutterBottom={true} className="description">
             {this.props.description}
           </Typography>
 

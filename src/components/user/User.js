@@ -1,6 +1,5 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import PaperSurface from '../shared/paper/PaperSurface.js';
 import Progress from '../shared/progress/Progress.js';
 import { filterAndJoinArray } from '../../utils/utils.js';
@@ -12,7 +11,7 @@ class User extends React.Component {
     super(props);
 
     this.state = {
-      hasError: false,
+      error: null,
       isUserLoaded: false,
       isUserCollectionLoaded: false,
       user: {},
@@ -31,34 +30,53 @@ class User extends React.Component {
     const url = `https://www.boardgamegeek.com/xmlapi2/user?name=${id}`;
 
     xmlApiFetch(url)
-      .then((json) => {
-        this.setState({
-          user: json.user,
-          isUserLoaded: true
-        });
-      })
-      .catch(error => this.setState({ hasError: true }));
+      .then(
+        (json) => {
+          this.setState({
+            user: json.user,
+            isUserLoaded: true
+          });
+        },
+        (error) => {
+          this.setState({ error: error });
+        }
+      )
   }
 
   fetchUserCollection(id) {
     const url = `https://www.boardgamegeek.com/xmlapi2/collection?username=${id}`;
 
     xmlApiFetch(url)
-      .then((json) => {
-        this.setState({
-          userCollection: json.items,
-          isUserCollectionLoaded: true
-        });
-      })
-      .catch(error => this.setState({ hasError: true }));
+      .then(
+        (json) => {
+          this.setState({
+            userCollection: json.items,
+            isUserCollectionLoaded: true
+          });
+        },
+        (error) => {
+          this.setState({ error: error });
+        }
+      )
   }
 
   getName(user) {
-    return filterAndJoinArray([user.firstname[0].$.value, user.lastname[0].$.value]);
+    return filterAndJoinArray(
+      [
+        user.firstname[0].$.value,
+        user.lastname[0].$.value
+      ]
+    );
   }
 
   getLocation(user) {
-    return filterAndJoinArray([user.stateorprovince[0].$.value, user.country[0].$.value], ', ');
+    return filterAndJoinArray(
+      [
+        user.stateorprovince[0].$.value,
+        user.country[0].$.value
+      ],
+      ', '
+    );
   }
 
   renderUserCollection(userCollection) {
@@ -73,18 +91,18 @@ class User extends React.Component {
         </Grid>
       );
     } else {
-      return <Progress hasError={this.state.hasError} />;
+      return <Progress error={this.state.error} />;
     }
   }
 
   renderUserInfo(user) {
     return (
-      <div>
-        <Typography variant="body1">{this.getName(user) + " - " + this.getLocation(user)}</Typography>
-        <Typography variant="body1">Last Login: {user.lastlogin[0].$.value}</Typography>
-        <Typography variant="body1">Year Registered: {user.yearregistered[0].$.value}</Typography>
-      </div>
-    )
+      <>
+        <span>{this.getName(user) + " - " + this.getLocation(user)}</span>
+        <span>Last Login: {user.lastlogin[0].$.value}</span>
+        <span>Year Registered: {user.yearregistered[0].$.value}</span>
+      </>
+    );
   }
 
   renderUser(user) {
@@ -99,7 +117,7 @@ class User extends React.Component {
         </Grid>
       );
     } else {
-      return <Progress hasError={this.state.hasError} />;
+      return <Progress error={this.state.error} />;
     }
   }
 

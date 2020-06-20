@@ -2,8 +2,8 @@
   text-align: center;
 }
 
-.paper-surface .description {
-  padding: 1.5em 3em 1em;
+.paper-surface .description span {
+  display: block;
 }
 
 .paper-surface .search {

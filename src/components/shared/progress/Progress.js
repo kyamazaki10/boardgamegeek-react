@@ -12,7 +12,7 @@ class Progress extends React.Component {
   }
 
   render() {
-    if (this.props.hasError) {
+    if (this.props.error) {
       return this.renderError();
     }
 

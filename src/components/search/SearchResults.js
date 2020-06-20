@@ -7,7 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Progress from '../shared/progress/Progress.js';
-import { parseXML } from '../../utils/utils.js';
+import { xmlApiFetch } from '../../utils/api.js';
 import './SearchResults.css';
 
 class SearchResults extends React.Component {
@@ -15,7 +15,7 @@ class SearchResults extends React.Component {
     super(props);
 
     this.state = {
-      hasError: false,
+      error: null,
       isLoaded: false,
       results: []
     };
@@ -30,17 +30,18 @@ class SearchResults extends React.Component {
   fetchSearch(query) {
     const url = `https://www.boardgamegeek.com/xmlapi2/search?type=boardgame&query=${query}`;
 
-    fetch(url)
-      .then(response => response.text())
-      .then((xmlResponse) => {
-        const json = parseXML(xmlResponse);
-
-        this.setState({
-          results: json.items.item,
-          isLoaded: true
-        });
-      })
-      .catch(error => this.setState({ hasError: true }));
+    xmlApiFetch(url)
+      .then(
+        (json) => {
+          this.setState({
+            results: json.items.item,
+            isLoaded: true
+          });
+        },
+        (error) => {
+          this.setState({ error: error });
+        }
+      )
   }
 
   renderNoResults() {
@@ -89,7 +90,7 @@ class SearchResults extends React.Component {
         return this.renderNoResults();
       }
     } else {
-      return <Progress hasError={this.state.hasError} />;
+      return <Progress error={this.state.error} />;
     }
   }
 
