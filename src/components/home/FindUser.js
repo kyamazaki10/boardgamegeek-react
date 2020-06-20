@@ -1,12 +1,12 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import PaperSurface from '../shared/paper/PaperSurface.js';
-import './Welcome.css';
+import './FindUser.css';
 
-class Welcome extends React.Component {
+class FindUser extends React.Component {
   render() {
     return (
-      <div className="welcome">
+      <div className="find-user">
         <Grid container spacing={2}>
           <PaperSurface
             header="Find a User"
@@ -21,4 +21,4 @@ class Welcome extends React.Component {
   }
 }
 
-export default Welcome;
+export default FindUser;

@@ -29,11 +29,13 @@ class PaperSurface extends React.Component {
     return(
       <Grid item xs={this.props.size}>
         <Paper className="paper paper-surface">
-          <Typography variant="h3" component="h3">
+          <Typography variant="h3" gutterBottom={true}>
             {this.props.header}
           </Typography>
 
-          {this.props.description}
+          <Typography variant="body1" gutterBottom={true}>
+            {this.props.description}
+          </Typography>
 
           {this.renderSearch()}
           {this.renderButton()}
