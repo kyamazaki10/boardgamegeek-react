@@ -33,9 +33,7 @@ class PaperSurface extends React.Component {
             {this.props.header}
           </Typography>
 
-          <Typography variant="body1" className="description">
-            {this.props.description}
-          </Typography>
+          {this.props.description}
 
           {this.renderSearch()}
           {this.renderButton()}
