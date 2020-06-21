@@ -35,13 +35,12 @@ class UserInfo extends React.Component {
   }
 
   render() {
-    const { user } = this.props;
+    const user = this.props.user;
 
     return (
       <PaperSurface
         header={user.$.name}
         description={this.renderUserAdditionalInfo(user)}
-        size={4}
       />
     );
   }

@@ -9,13 +9,12 @@ class UserGamesOwned extends React.Component {
   }
 
   render() {
-    const { collection } = this.props;
+    const collection = this.props.collection;
 
     return(
       <PaperSurface
         header={this.calculateOwned(collection.item)}
         description="Games Owned"
-        size={4}
       />
     );
   }

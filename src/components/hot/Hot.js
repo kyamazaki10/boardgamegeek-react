@@ -12,7 +12,7 @@ class Hot extends React.Component {
     super(props);
 
     this.state = {
-      hot: [],
+      hotGames: [],
       error: null,
       isLoaded: false
     };
@@ -29,7 +29,7 @@ class Hot extends React.Component {
       .then(
         (json) => {
           this.setState({
-            hot: json.items.item,
+            hotGames: json.items.item,
             isLoaded: true
           });
         },
@@ -39,33 +39,34 @@ class Hot extends React.Component {
       )
   }
 
-  renderHotGames() {
-    if (this.state.isLoaded) {
-      const games = this.state.hot;
-
-      return (
-        <Paper className="paper paper-hot">
-          <Typography variant="h4" component="h2">
-            What’s Hot?
-          </Typography>
-
-          <GridList cellHeight={180} cols={6} spacing={15}>
-            {games.map((game, i) => (
-              <HotGame key={i} game={game} />
-            ))};
-          </GridList>
-        </Paper>
-      );
-    } else {
-      return <Progress error={this.state.error} />;
-    }
+  renderHotGames(games) {
+    return (
+      <GridList cellHeight={180} cols={6} spacing={15}>
+        {games.map((game, i) => (
+          <HotGame key={i} game={game} />
+        ))};
+      </GridList>
+    );
   }
 
   render() {
+    const {
+      hotGames,
+      isLoaded,
+      error
+    } = this.state;
+
     return (
-      <div className="hot">
-        {this.renderHotGames()}
-      </div>
+      <Paper className="paper paper-hot">
+        <Typography variant="h4" component="h2">
+          What’s Hot?
+        </Typography>
+
+        {isLoaded
+          ? this.renderHotGames(hotGames)
+          : <Progress error={error}></Progress>
+        }
+      </Paper>
     );
   }
 }

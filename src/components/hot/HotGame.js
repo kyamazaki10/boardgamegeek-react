@@ -7,7 +7,7 @@ import './HotGame.css';
 class HotGame extends React.Component {
   render() {
     const { key, game } = this.props;
-    let title = game.name[0].$.value;
+    const title = game.name[0].$.value;
 
     return (
       <GridListTile

@@ -5,13 +5,12 @@ import './UserGamesPlayed.css';
 class UserGamesPlayed extends React.Component {
 
   render() {
-    const { plays } = this.props;
+    const plays = this.props.plays;
 
     return(
       <PaperSurface
         header={plays.$.total}
         description="Games Played"
-        size={4}
       />
     );
   }

@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Search from '../../search/Search.js';
@@ -8,39 +7,44 @@ import './PaperSurface.css';
 
 class PaperSurface extends React.Component {
   renderSearch() {
-    if (this.props.search) {
-      return (
-        <Search type={this.props.type} />
-      );
-    }
+    const search  = this.props.search;
+    const type = this.props.type;
+
+    return (
+      <>  
+        {search &&
+          <Search type={type} />
+        }
+      </>
+    );
   }
 
   renderButton() {
     const buttonText = this.props.buttonText;
 
-    if (buttonText) {
-      return (
-        <Button variant="contained">{buttonText}</Button>
-      );
-    }
+    return(
+      <>
+        {buttonText &&
+          <Button variant="contained">{buttonText}</Button>
+        }
+      </>
+    );
   }
 
   render() {
     return(
-      <Grid item xs={this.props.size}>
-        <Paper className="paper paper-surface">
-          <Typography variant="h3" gutterBottom={true}>
-            {this.props.header}
-          </Typography>
+      <Paper className="paper paper-surface">
+        <Typography variant="h3" gutterBottom={true}>
+          {this.props.header}
+        </Typography>
 
-          <Typography variant="body1" gutterBottom={true} className="description">
-            {this.props.description}
-          </Typography>
+        <Typography variant="body1" gutterBottom={true} className="description">
+          {this.props.description}
+        </Typography>
 
-          {this.renderSearch()}
-          {this.renderButton()}
-        </Paper>
-      </Grid>
+        {this.renderSearch()}
+        {this.renderButton()}
+      </Paper>
     );
   }
 }

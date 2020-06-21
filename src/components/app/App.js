@@ -1,4 +1,5 @@
 import React from 'react';
+import Grid from '@material-ui/core/Grid';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Game from '../game/Game.js';
@@ -14,14 +15,16 @@ function App() {
     <MuiThemeProvider theme={theme}>
       <Header />
 
-      <div className="content">
-        <Router>
-          <Route path="/" exact component={Home} />
-          <Route path="/games/:id" component={Game} />
-          <Route path="/users/:id" component={User} />
-          <Route path="/search/:query" component={SearchResults} />
-        </Router>
-      </div>
+      <Grid container spacing={10} justify="center">
+        <Grid item xs={12} sm={10}>
+          <Router>
+            <Route path="/" exact component={Home} />
+            <Route path="/games/:id" component={Game} />
+            <Route path="/users/:id" component={User} />
+            <Route path="/search/:query" component={SearchResults} />
+          </Router>
+        </Grid>
+      </Grid>
     </MuiThemeProvider>
   );
 }
