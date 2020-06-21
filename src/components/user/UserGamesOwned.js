@@ -1,5 +1,4 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
 import PaperSurface from '../shared/paper/PaperSurface.js';
 import './UserGamesOwned.css';
 
@@ -13,12 +12,11 @@ class UserGamesOwned extends React.Component {
     const { collection } = this.props;
 
     return(
-      <Grid container spacing={2}>
-        <PaperSurface
-          header={this.calculateOwned(collection.item) + ' Games Owned'}
-          size={4}
-        />
-      </Grid>
+      <PaperSurface
+        header={this.calculateOwned(collection.item)}
+        description="Games Owned"
+        size={4}
+      />
     );
   }
 }

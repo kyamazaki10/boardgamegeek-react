@@ -1,5 +1,4 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
 import PaperSurface from '../shared/paper/PaperSurface.js';
 import { filterAndJoinArray } from '../../utils/utils.js';
 import './UserInfo.css';
@@ -39,13 +38,11 @@ class UserInfo extends React.Component {
     const { user } = this.props;
 
     return (
-      <Grid container spacing={2}>
-        <PaperSurface
-          header={user.$.name}
-          description={this.renderUserAdditionalInfo(user)}
-          size={4}
-        />
-      </Grid>
+      <PaperSurface
+        header={user.$.name}
+        description={this.renderUserAdditionalInfo(user)}
+        size={4}
+      />
     );
   }
 }

@@ -1,6 +1,8 @@
 import React from 'react';
+import Grid from '@material-ui/core/Grid';
 import UserInfo from './UserInfo.js';
 import UserGamesOwned from './UserGamesOwned.js';
+import UserGamesPlayed from './UserGamesPlayed.js';
 import Progress from '../shared/progress/Progress.js';
 import { xmlApiFetch } from '../../utils/api.js';
 import './User.css';
@@ -13,8 +15,10 @@ class User extends React.Component {
       error: null,
       isUserLoaded: false,
       isUserCollectionLoaded: false,
+      isUserPlaysLoaded: false,
       user: {},
-      userCollection: {}
+      userCollection: {},
+      userPlays: {}
     };
   }
 
@@ -23,6 +27,7 @@ class User extends React.Component {
 
     this.fetchUser(id);
     this.fetchUserCollection(id);
+    this.fetchUserPlays(id);
   }
 
   fetchUser(id) {
@@ -59,29 +64,51 @@ class User extends React.Component {
       )
   }
 
+  fetchUserPlays(id) {
+    const url = `https://www.boardgamegeek.com/xmlapi2/plays?username=${id}`;
+
+    xmlApiFetch(url)
+      .then(
+        (json) => {
+          this.setState({
+            userPlays: json.plays,
+            isUserPlaysLoaded: true
+          });
+        },
+        (error) => {
+          this.setState({ error: error });
+        }
+      )
+  }
+
   render() {
     const {
       error,
       isUserLoaded,
       isUserCollectionLoaded,
+      isUserPlaysLoaded,
       user,
-      userCollection
+      userCollection,
+      userPlays
     } = this.state;
 
     return (
-      <div className="user">
+      <Grid container spacing={2} className="user">
         {isUserLoaded
           ? <UserInfo user={user}></UserInfo>
           : <Progress error={error} />
         }
 
         {isUserCollectionLoaded
-          ? <>
-              <UserGamesOwned collection={userCollection}></UserGamesOwned>
-            </>
+          ? <UserGamesOwned collection={userCollection}></UserGamesOwned>
           : <Progress error={error}></Progress>
         }
-      </div>
+
+        {isUserPlaysLoaded
+          ? <UserGamesPlayed plays={userPlays}></UserGamesPlayed>
+          : <Progress error={error}></Progress>
+        }
+      </Grid>
     );
   }
 }
