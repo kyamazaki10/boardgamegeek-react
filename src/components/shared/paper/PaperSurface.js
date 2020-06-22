@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Search from '../../search/Search.js';
@@ -11,11 +12,13 @@ class PaperSurface extends React.Component {
     const type = this.props.type;
 
     return (
-      <>  
-        {search &&
-          <Search type={type} />
-        }
-      </>
+      <Grid container justify="center" className="user">
+        <Grid item xs={12} sm={10} md={8}>
+          {search &&
+            <Search type={type} />
+          }
+        </Grid>
+      </Grid>
     );
   }
 

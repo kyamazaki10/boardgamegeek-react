@@ -4,11 +4,25 @@ import SearchIcon from '@material-ui/icons/Search';
 import { redirectUrl } from '../../utils/utils.js';
 import './Search.css';
 
+const SEARCH_PLACEHOLDER = 'Search...';
+
 class Search extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+
+  handleBlur(e) {
+    const target = e.target;
+
+    if (!target.value) {
+      target.placeholder = SEARCH_PLACEHOLDER;
+    }
+  }
+
+  handleFocus(e) {
+    e.target.placeholder = '';
   }
 
   handleKeyPress(e) {
@@ -28,8 +42,10 @@ class Search extends React.Component {
         </div>
 
         <InputBase
+          onBlur={this.handleBlur}
+          onFocus={this.handleFocus}
           onKeyPress={this.handleKeyPress}
-          placeholder="Search..."
+          placeholder={SEARCH_PLACEHOLDER}
           inputProps={{'aria-label': 'Search'}}
           className="search-input" />
       </div>
