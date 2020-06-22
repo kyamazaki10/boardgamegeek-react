@@ -6,7 +6,8 @@ import './HotGame.css';
 
 class HotGame extends React.Component {
   render() {
-    const { key, game } = this.props;
+    const key = this.props.key;
+    const game = this.props.game;
     const title = game.name[0].$.value;
 
     return (

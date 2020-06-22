@@ -1,5 +1,6 @@
 import React from 'react';
 import GridList from '@material-ui/core/GridList';
+import withWidth from '@material-ui/core/withWidth';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import HotGame from './HotGame.js';
@@ -39,9 +40,17 @@ class Hot extends React.Component {
       )
   }
 
+  calculateColumnWidth() {
+    switch(this.props.width) {
+      case 'xs': return 1;
+      case 'sm': return 2;
+      default: return 4;
+    }
+  }
+
   renderHotGames(games) {
     return (
-      <GridList cellHeight={180} cols={6} spacing={15}>
+      <GridList cellHeight={180} cols={this.calculateColumnWidth()} spacing={15}>
         {games.map((game, i) => (
           <HotGame key={i} game={game} />
         ))};
@@ -57,8 +66,8 @@ class Hot extends React.Component {
     } = this.state;
 
     return (
-      <Paper className="paper paper-hot">
-        <Typography variant="h4" component="h2">
+      <Paper className="paper hot">
+        <Typography variant="h4" component="h2" gutterBottom={true}>
           What’s Hot?
         </Typography>
 
@@ -71,4 +80,4 @@ class Hot extends React.Component {
   }
 }
 
-export default Hot;
+export default withWidth()(Hot);
