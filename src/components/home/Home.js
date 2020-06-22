@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Hot from '../hot/Hot.js';
-import FindUser from './FindUser.js';
+import FindUser from '../findUser/FindUser.js';
 import './Home.css';
 
 class Home extends React.Component {
