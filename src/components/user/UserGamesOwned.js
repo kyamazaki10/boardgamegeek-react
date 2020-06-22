@@ -13,7 +13,7 @@ class UserGamesOwned extends React.Component {
 
     return(
       <PaperSurface
-        header={this.calculateOwned(collection.item)}
+        header={this.calculateOwned(collection)}
         description="Games Owned"
       />
     );

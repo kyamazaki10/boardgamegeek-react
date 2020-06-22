@@ -12,67 +12,25 @@ class User extends React.Component {
     super(props);
 
     this.state = {
+      collection: {},
       error: null,
-      isUserLoaded: false,
-      isUserCollectionLoaded: false,
-      isUserPlaysLoaded: false,
-      user: {},
-      userCollection: {},
-      userPlays: {}
+      isLoaded: false
     };
   }
 
   componentDidMount() {
-    const id = this.props.match.params.id;
-
-    this.fetchUser(id);
-    this.fetchUserCollection(id);
-    this.fetchUserPlays(id);
+    this.fetchCollection(this.props.match.params.id);
   }
 
-  fetchUser(id) {
-    const url = `https://www.boardgamegeek.com/xmlapi2/user?name=${id}`;
-
-    xmlApiFetch(url)
-      .then(
-        (json) => {
-          this.setState({
-            user: json.user,
-            isUserLoaded: true
-          });
-        },
-        (error) => {
-          this.setState({ error: error });
-        }
-      )
-  }
-
-  fetchUserCollection(id) {
+  fetchCollection(id) {
     const url = `https://www.boardgamegeek.com/xmlapi2/collection?username=${id}`;
 
     xmlApiFetch(url)
       .then(
         (json) => {
           this.setState({
-            userCollection: json.items,
-            isUserCollectionLoaded: true
-          });
-        },
-        (error) => {
-          this.setState({ error: error });
-        }
-      )
-  }
-
-  fetchUserPlays(id) {
-    const url = `https://www.boardgamegeek.com/xmlapi2/plays?username=${id}`;
-
-    xmlApiFetch(url)
-      .then(
-        (json) => {
-          this.setState({
-            userPlays: json.plays,
-            isUserPlaysLoaded: true
+            collection: json.items,
+            isLoaded: true
           });
         },
         (error) => {
@@ -83,36 +41,28 @@ class User extends React.Component {
 
   render() {
     const {
+      collection,
       error,
-      isUserLoaded,
-      isUserCollectionLoaded,
-      isUserPlaysLoaded,
-      user,
-      userCollection,
-      userPlays
+      isLoaded
     } = this.state;
+
+    const id = this.props.match.params.id;
 
     return (
       <Grid container spacing={2} className="user">
         <Grid item xs={4}>
-          {isUserLoaded
-            ? <UserInfo user={user}></UserInfo>
+          <UserInfo id={id} />
+        </Grid>
+
+        <Grid item xs={4}>
+          {isLoaded
+            ? <UserGamesOwned collection={collection.item} />
             : <Progress error={error} />
           }
         </Grid>
 
         <Grid item xs={4}>
-          {isUserCollectionLoaded
-            ? <UserGamesOwned collection={userCollection}></UserGamesOwned>
-            : <Progress error={error}></Progress>
-          }
-        </Grid>
-
-        <Grid item xs={4}>
-          {isUserPlaysLoaded
-            ? <UserGamesPlayed plays={userPlays}></UserGamesPlayed>
-            : <Progress error={error}></Progress>
-          }
+          <UserGamesPlayed id={id} />
         </Grid>
       </Grid>
     );
