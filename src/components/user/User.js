@@ -1,5 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import UserCollectionTable from './UserCollectionTable.js';
 import UserInfo from './UserInfo.js';
 import UserGamesOwned from './UserGamesOwned.js';
 import UserGamesPlayed from './UserGamesPlayed.js';
@@ -23,13 +24,13 @@ class User extends React.Component {
   }
 
   fetchCollection(id) {
-    const url = `https://www.boardgamegeek.com/xmlapi2/collection?username=${id}`;
+    const url = `https://www.boardgamegeek.com/xmlapi2/collection?username=${id}&stats=1`;
 
     xmlApiFetch(url)
       .then(
         (json) => {
           this.setState({
-            collection: json.items,
+            collection: json.items.item,
             isLoaded: true
           });
         },
@@ -56,13 +57,20 @@ class User extends React.Component {
 
         <Grid item xs={4}>
           {isLoaded
-            ? <UserGamesOwned collection={collection.item} />
+            ? <UserGamesOwned collection={collection} />
             : <Progress error={error} />
           }
         </Grid>
 
         <Grid item xs={4}>
-          <UserGamesPlayed id={id} />
+          <UserGamesPlayed collection={id} />
+        </Grid>
+
+        <Grid item xs={12}>
+          {isLoaded
+            ? <UserCollectionTable collection={collection} />
+            : <Progress error={error} />
+          }
         </Grid>
       </Grid>
     );
