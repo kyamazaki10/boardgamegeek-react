@@ -5,65 +5,146 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
 import './UserCollectionTable.css';
+
+const COLUMN_DEFAULT = 'game';
+const SORT_ASCENDING = 'asc';
+const SORT_DESCENDING = 'desc';
 
 class UserCollectionTable extends React.Component {
 
-  showRank(rank) {
-    return rank === 'Not Ranked' ? '' : rank;
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      column: COLUMN_DEFAULT,
+      direction: SORT_ASCENDING
+    };
   }
 
   showStatus(status) {
-    return status === '0' ? '' : 'Owned';
+    return (status === 0) ? '' : 'Owned';
+  }
+
+  alignColumn(column) {
+    return (column === COLUMN_DEFAULT) ? 'left' : 'center';
+  }
+
+  sortCollection(columnId) {
+    if (this.state.column === columnId) {
+      this.setState({
+        direction: this.flipSortDirection()
+      });
+    } else {
+      this.setState({
+        column: columnId,
+        direction: SORT_ASCENDING
+      });
+    }
+  }
+
+  flipSortDirection() {
+    return (this.state.direction === SORT_ASCENDING)
+      ? SORT_DESCENDING : SORT_ASCENDING;
+  }
+
+  compareValues(columnId, direction) {
+    return function innerSort(a, b) {
+      const compareA = (typeof a[columnId] === 'string') ? a[columnId].toUpperCase() : a[columnId];
+      const compareB = (typeof b[columnId] === 'string') ? b[columnId].toUpperCase() : b[columnId];
+
+      let compare = 0;
+
+      if (compareA > compareB) {
+        compare = 1;
+      }
+
+      if (compareA < compareB) {
+        compare = -1;
+      }
+
+      return (direction === SORT_ASCENDING) ? compare : compare * -1;
+    };
+  }
+
+  renderTableHead() {
+    const columns = [
+      { id: 'game', display: 'Game' },
+      { id: 'rank', display: 'Rank' },
+      { id: 'your_rating', display: 'Your Rating' },
+      { id: 'geek_rating', display: 'Geek Rating' },
+      { id: 'status', display: 'Status' },
+      { id: 'plays', display: 'Plays' }
+    ];
+
+    return (
+      <TableRow>
+        {columns.map((column, i) => {
+          const columnId = column.id;
+
+          return (
+            <TableCell
+              key={i}
+              align={this.alignColumn(columnId)}
+            >
+              <TableSortLabel
+                active={this.state.column === columnId}
+                direction={this.state.direction}
+                onClick={() => this.sortCollection(columnId)}
+              >
+                {column.display}
+              </TableSortLabel>
+            </TableCell>
+          );
+        })}
+      </TableRow>
+    );
   }
 
   render() {
     const collection = this.props.collection;
 
-    return(
+    return (
       <Paper>
         <Table>
           <TableHead>
-            <TableRow>
-              <TableCell>Game</TableCell>
-              <TableCell align="center">Rank</TableCell>
-              <TableCell align="center">Your Rating</TableCell>
-              <TableCell align="center">Geek Rating</TableCell>
-              <TableCell align="center">Status</TableCell>
-              <TableCell align="center">Plays</TableCell>
-            </TableRow>
+            {this.renderTableHead()}
           </TableHead>
 
           <TableBody>
-            {collection.map(game => (
-              <TableRow key={game.$.objectid}>
+            {collection
+              .sort(this.compareValues(this.state.column, this.state.direction))
+              .map(game => (
+                <TableRow key={game.id}>
 
-                <TableCell>
-                  {game.name[0]._}
-                </TableCell>
+                  <TableCell>
+                    {game.game}
+                  </TableCell>
 
-                <TableCell align="center">
-                  {this.showRank(game.stats[0].rating[0].ranks[0].rank[0].$.value)}
-                </TableCell>
+                  <TableCell align="center">
+                    {game.rank}
+                  </TableCell>
 
-                <TableCell align="center">
-                  {game.stats[0].rating[0].$.value}
-                </TableCell>
+                  <TableCell align="center">
+                    {game.your_rating}
+                  </TableCell>
 
-                <TableCell align="center">
-                  {Math.floor(game.stats[0].rating[0].average[0].$.value * 1000) / 1000}
-                </TableCell>
+                  <TableCell align="center">
+                    {game.geek_rating}
+                  </TableCell>
 
-                <TableCell align="center">
-                  {this.showStatus(game.status[0].$.own)}
-                </TableCell>
+                  <TableCell align="center">
+                    {this.showStatus(game.status)}
+                  </TableCell>
 
-                <TableCell align="center">
-                  {game.numplays[0]}
-                </TableCell>
+                  <TableCell align="center">
+                    {game.plays}
+                  </TableCell>
 
-              </TableRow>
-            ))}
+                </TableRow>
+              )
+            )}
           </TableBody>
         </Table>
       </Paper>

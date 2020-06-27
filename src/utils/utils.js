@@ -11,17 +11,23 @@ export const parseXML = (xml) => {
 };
 
 export const decodeHTML = (html) => {
-  let text = document.createElement('textarea');
+  const text = document.createElement('textarea');
   text.innerHTML = html;
 
   return text.value;
 };
 
 export const filterAndJoinArray = (array, separatorString) => {
-  let separator = separatorString ? separatorString : ' ';
+  const separator = separatorString ? separatorString : ' ';
 
   return array.filter(element => element).join(separator);
 };
+
+export const convertToNumber = (value) => {
+  const valueInt = parseInt(value);
+
+  return isNaN(valueInt) ? null : valueInt;
+}
 
 export const truncateText = (html) => {
   return html.split(' ').slice(0, 130).join(' ') + '... ';
