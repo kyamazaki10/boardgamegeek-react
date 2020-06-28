@@ -15,7 +15,7 @@ function App() {
     <MuiThemeProvider theme={theme}>
       <Header />
 
-      <Grid container spacing={10} justify="center">
+      <Grid container justify="center">
         <Grid item xs={12} sm={10}>
           <Router>
             <Route path="/" exact component={Home} />

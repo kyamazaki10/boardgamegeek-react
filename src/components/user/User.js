@@ -68,18 +68,18 @@ class User extends React.Component {
 
     return (
       <Grid container spacing={2} className="user">
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4}>
           <UserInfo id={id} />
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={6} md={4}>
           {isLoaded
             ? <UserGamesOwned collection={collection} />
             : <Progress error={error} />
           }
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <UserGamesPlayed id={id} />
         </Grid>
 

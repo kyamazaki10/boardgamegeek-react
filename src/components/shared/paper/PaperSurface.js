@@ -12,13 +12,15 @@ class PaperSurface extends React.Component {
     const type = this.props.type;
 
     return (
-      <Grid container justify="center" className="user">
-        <Grid item xs={12} sm={10} md={8}>
-          {search &&
-            <Search type={type} />
-          }
-        </Grid>
-      </Grid>
+      <>
+        {search &&
+          <Grid container justify="center" className="user">
+            <Grid item xs={12} sm={10} md={8}>
+              <Search type={type} />
+            </Grid>
+          </Grid>
+        }
+      </>
     );
   }
 

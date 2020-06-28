@@ -26,13 +26,22 @@ export default createMuiTheme({
     MuiTableSortLabel: {
       root: {
         '&:hover': {
-          color: grey[50]
+          color: grey[50],
+          '&& $icon': {
+            color: grey[50],
+            opacity: 1
+          }
         },
         '&$active': {
           color: grey[200],
           '&& $icon': {
-            color: grey[200]
+            color: grey[200],
+            opacity: 1
           }
+        },
+        '&& $icon': {
+          color: grey[800],
+          opacity: 1
         }
       }
     }
