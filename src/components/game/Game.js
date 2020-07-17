@@ -1,5 +1,6 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import GameDescription from './GameDescription.js';
 import Progress from '../shared/progress/Progress.js';
@@ -38,50 +39,54 @@ class Game extends React.Component {
       )
   }
 
-  renderGame() {
-    if (this.state.isLoaded) {
-      const game = this.state.game;
-      const title = game.name[0].$.value;
+  renderGame(game) {
+    const title = game.name[0].$.value;
 
-      return (
-        <Paper className="paper game-content">
-          <img src={game.image[0]} alt={title} />
+    return (
+      <Paper className="paper">
+        <Grid container spacing={4}>
+          <Grid item xs={3}>
+            <img src={game.image[0]} alt={title} />
+          </Grid>
 
-          <Typography variant="h4" component="h1">
-            {title}
-          </Typography>
+          <Grid item xs={9}>
+            <Typography variant="h4" component="h1" gutterBottom={true}>
+              {title} ({game.yearpublished[0].$.value})
+            </Typography>
 
-          <Typography variant="subtitle2">
-            ({game.yearpublished[0].$.value})
-          </Typography>
-
-          <div className="gameplay-details">
-            <div>
-              <Typography variant="caption">
+            <div className="details">
+              <Typography variant="body1">
                 Players: {game.minplayers[0].$.value}-{game.maxplayers[0].$.value}
               </Typography>
-            </div>
 
-            <div>
-              <Typography variant="caption">
+              <Typography variant="body1">
                 Playing Time: {game.minplaytime[0].$.value}-{game.maxplaytime[0].$.value} minutes
               </Typography>
             </div>
-          </div>
+          </Grid>
 
           <GameDescription description={game.description} />
-        </Paper>
-      );
-    } else {
-      return <Progress error={this.state.error} />;
-    }
+        </Grid>
+      </Paper>
+    );
   }
 
   render() {
+    const {
+      error,
+      game,
+      isLoaded
+    } = this.state;
+
     return (
-      <div className="game">
-        {this.renderGame()}
-      </div>
+      <Grid container spacing={2} className="game">
+        <Grid item xs={12}>
+          {isLoaded
+            ? this.renderGame(game)
+            : <Progress error={error} />
+          }
+        </Grid>
+      </Grid>
     );
   }
 }
