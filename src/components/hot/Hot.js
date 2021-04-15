@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
 import GridList from '@material-ui/core/GridList';
 import withWidth from '@material-ui/core/withWidth';
 import Paper from '@material-ui/core/Paper';
@@ -13,8 +14,9 @@ class Hot extends React.Component {
     super(props);
 
     this.state = {
-      hotGames: [],
+      games: [],
       error: null,
+      isExpanded: false,
       isLoaded: false
     };
   }
@@ -30,7 +32,7 @@ class Hot extends React.Component {
       .then(
         (json) => {
           this.setState({
-            hotGames: json.items.item,
+            games: json.items.item,
             isLoaded: true
           });
         },
@@ -48,21 +50,45 @@ class Hot extends React.Component {
     }
   }
 
-  renderHotGames(games) {
+  showMore() {
+    this.setState({
+      isExpanded: true
+    });
+  }
+
+  renderGameGrid(games) {
+    return(
+      games.map((game, i) => (
+        <HotGame key={i} game={game} />
+      ))
+    );
+  }
+
+  renderGames() {
+    let games = this.state.games;
+    const topGames = games.splice(0,20);
+    const isExpanded = this.state.isExpanded;
+
     return (
-      <GridList cellHeight={180} cols={this.calculateColumnWidth()} spacing={15}>
-        {games.map((game, i) => (
-          <HotGame key={i} game={game} />
-        ))};
-      </GridList>
+      <>
+        <GridList cellHeight={150} cols={this.calculateColumnWidth()} spacing={20}>
+          {this.renderGameGrid(topGames)}
+          {isExpanded && (this.renderGameGrid(games))}
+        </GridList>
+
+        {!isExpanded && (
+          <Button variant="contained" color="primary" className="more" onClick={() => this.showMore()}>
+            Show More
+          </Button>
+        )}
+      </>
     );
   }
 
   render() {
     const {
-      hotGames,
-      isLoaded,
-      error
+      error,
+      isLoaded
     } = this.state;
 
     return (
@@ -72,7 +98,7 @@ class Hot extends React.Component {
         </Typography>
 
         {isLoaded
-          ? this.renderHotGames(hotGames)
+          ? this.renderGames()
           : <Progress error={error}></Progress>
         }
       </Paper>
