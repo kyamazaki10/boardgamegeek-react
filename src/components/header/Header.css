@@ -18,5 +18,6 @@
 }
 
 .title {
+  text-align: left;
   flex-grow: 1;
 }

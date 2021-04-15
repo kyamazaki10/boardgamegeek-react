@@ -1,3 +1,7 @@
+.game .game-details {
+  text-align: left;
+}
+
 .game img {
   width: 100%;
 }

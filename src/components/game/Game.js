@@ -39,12 +39,13 @@ class Game extends React.Component {
       )
   }
 
-  renderGame(game) {
+  renderGame() {
+    const game = this.state.game;
     const title = game.name[0].$.value;
 
     return (
       <Paper className="paper">
-        <Grid container spacing={4}>
+        <Grid container spacing={4} className="game-details">
           <Grid item xs={3}>
             <img src={game.image[0]} alt={title} />
           </Grid>
@@ -54,15 +55,13 @@ class Game extends React.Component {
               {title} ({game.yearpublished[0].$.value})
             </Typography>
 
-            <div className="details">
-              <Typography variant="body1">
-                Players: {game.minplayers[0].$.value}-{game.maxplayers[0].$.value}
-              </Typography>
+            <Typography variant="body1">
+              Players: {game.minplayers[0].$.value}-{game.maxplayers[0].$.value}
+            </Typography>
 
-              <Typography variant="body1">
-                Playing Time: {game.minplaytime[0].$.value}-{game.maxplaytime[0].$.value} minutes
-              </Typography>
-            </div>
+            <Typography variant="body1">
+              Playing Time: {game.minplaytime[0].$.value}-{game.maxplaytime[0].$.value} minutes
+            </Typography>
           </Grid>
 
           <GameDescription description={game.description} />
@@ -74,7 +73,6 @@ class Game extends React.Component {
   render() {
     const {
       error,
-      game,
       isLoaded
     } = this.state;
 
@@ -82,7 +80,7 @@ class Game extends React.Component {
       <Grid container spacing={2} className="game">
         <Grid item xs={12}>
           {isLoaded
-            ? this.renderGame(game)
+            ? this.renderGame()
             : <Progress error={error} />
           }
         </Grid>
