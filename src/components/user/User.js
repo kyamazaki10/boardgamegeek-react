@@ -65,30 +65,39 @@ class User extends React.Component {
     } = this.state;
 
     const id = this.props.match.params.id;
+    let content;
+
+    if (isLoaded) {
+      content =
+        <>
+          <Grid item xs={12} md={4}>
+            <UserInfo id={id} />
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={4}>
+            <UserGamesOwned collection={collection} />
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={4}>
+            <UserGamesPlayed id={id} />
+          </Grid>
+
+          <Grid item xs={12}>
+            <UserCollectionTable collection={this.cleanData(collection)} />
+          </Grid>
+        </>;
+    } else {
+      content =
+        <>
+          <Grid item xs={12}>
+            <Progress error={error} />
+          </Grid>
+        </>;
+    }
 
     return (
       <Grid container spacing={2} className="user">
-        <Grid item xs={12} md={4}>
-          <UserInfo id={id} />
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={4}>
-          {isLoaded
-            ? <UserGamesOwned collection={collection} />
-            : <Progress error={error} />
-          }
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={4}>
-          <UserGamesPlayed id={id} />
-        </Grid>
-
-        <Grid item xs={12}>
-          {isLoaded
-            ? <UserCollectionTable collection={this.cleanData(collection)} />
-            : <Progress error={error} />
-          }
-        </Grid>
+        {content}
       </Grid>
     );
   }
