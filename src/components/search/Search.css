@@ -1,6 +1,7 @@
 .search {
+  text-align: left;
   position: relative;
-  background-color: #C5E1A5;
+  background-color: #e64a19;
 }
 
 .search-icon {
@@ -17,7 +18,12 @@
   padding: 0.5em 0.5em 0.5em 3em;
 }
 
+.search-input input {
+  width: 200px;
+}
+
 .search-input input:focus {
+  width: 300px;
   transition: width 0.5s;
   -webkit-transition: width 0.5s;
   -moz-transition: width 0.5s;

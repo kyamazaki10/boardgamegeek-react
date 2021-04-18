@@ -7,14 +7,20 @@
   margin: 0 auto;
 }
 
-.header-content a {
-  color: #000;
-  font-weight: 400;
-  text-decoration: none;
+.header-content a,
+.header-content svg,
+.header-content input {
+  color: #fafafa;
 }
 
-.header-content a:hover {
-  color: #333;
+.header-content a:hover,
+.header-content svg:hover {
+  color: #ffccbc;
+}
+
+.header-content a {
+  font-weight: 400;
+  text-decoration: none;
 }
 
 .title {

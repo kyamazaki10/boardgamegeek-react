@@ -1,16 +1,15 @@
-import green from '@material-ui/core/colors/green';
-import grey from '@material-ui/core/colors/grey';
-import lightGreen from '@material-ui/core/colors/lightGreen';
+import deepOrange from '@material-ui/core/colors/deepOrange';
 import red from '@material-ui/core/colors/red';
+import yellow from '@material-ui/core/colors/yellow';
 import { createMuiTheme } from '@material-ui/core/styles';
 
 export default createMuiTheme({
   palette: {
     primary: {
-      main: lightGreen[300]
+      main: deepOrange[800]
     },
     secondary: {
-      main: green[300],
+      main: yellow[500]
     },
     error: red,
     contrastThreshold: 3,
@@ -19,28 +18,28 @@ export default createMuiTheme({
   overrides: {
     MuiTableCell: {
       head: {
-        color: grey[400],
-        backgroundColor: grey[900]
+        color: deepOrange[500],
+        backgroundColor: deepOrange[100]
       }
     },
     MuiTableSortLabel: {
       root: {
         '&:hover': {
-          color: grey[50],
+          color: deepOrange[900],
           '&& $icon': {
-            color: grey[50],
+            color: deepOrange[900],
             opacity: 1
           }
         },
         '&$active': {
-          color: grey[200],
+          color: deepOrange[900],
           '&& $icon': {
-            color: grey[200],
+            color: deepOrange[900],
             opacity: 1
           }
         },
         '&& $icon': {
-          color: grey[800],
+          color: deepOrange[500],
           opacity: 1
         }
       }
