@@ -39,8 +39,7 @@ export default createMuiTheme({
           }
         },
         '&& $icon': {
-          color: deepOrange[500],
-          opacity: 1
+          opacity: 0.4
         }
       }
     }

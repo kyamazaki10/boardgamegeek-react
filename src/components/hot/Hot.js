@@ -66,7 +66,7 @@ class Hot extends React.Component {
 
   renderGames() {
     let games = this.state.games;
-    const topGames = games.splice(0,20);
+    const topGames = games.slice(0,20);
     const isExpanded = this.state.isExpanded;
 
     return (

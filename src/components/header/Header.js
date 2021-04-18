@@ -21,7 +21,7 @@ class Header extends React.Component {
               <a href="/">Colorado Gaming</a>
             </Typography>
 
-            <Search type="search" />
+            <Search type="search" searchText="Find Game..." />
           </Toolbar>
         </AppBar>
       </div>

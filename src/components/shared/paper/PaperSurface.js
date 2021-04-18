@@ -9,6 +9,7 @@ import './PaperSurface.css';
 class PaperSurface extends React.Component {
   renderSearch() {
     const search  = this.props.search;
+    const searchText = this.props.searchText;
     const type = this.props.type;
 
     return (
@@ -16,7 +17,7 @@ class PaperSurface extends React.Component {
         {search &&
           <Grid container justify="center" className="user">
             <Grid item xs={12} sm={10} md={8}>
-              <Search type={type} />
+              <Search type={type} searchText={searchText} />
             </Grid>
           </Grid>
         }

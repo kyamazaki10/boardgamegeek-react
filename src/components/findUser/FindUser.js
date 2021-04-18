@@ -9,6 +9,7 @@ class FindUser extends React.Component {
         header="Find a User"
         description="View stats for a specific BoardGameGeek user."
         search={true}
+        searchText="Find User..."
         type="users"
       />
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -119,7 +120,9 @@ class UserCollectionTable extends React.Component {
                 <TableRow key={game.id}>
 
                   <TableCell>
-                    {game.game}
+                    <Link href={`https://boardgamegeek.com/boardgame/${game.id}`}>
+                      {game.game}
+                    </Link>
                   </TableCell>
 
                   <TableCell align="center">
